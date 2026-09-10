@@ -1,112 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/app/">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Build-season task board for FTC Robotics Team 13115 — assign, claim, and track tasks across mechanical, outreach, programming, and strategy.">
-  <meta name="theme-color" content="#0E0E12">
-
-  <!-- Google Sign-In: web OAuth client, shared with the Android build's serverClientId. -->
-  <meta name="google-signin-client_id" content="842144934667-s17d17dsjagqg8qkjel9ankn4ndcbip4.apps.googleusercontent.com">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="13115 Robotics">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>13115 Robotics — Task Tracker</title>
-  <link rel="manifest" href="manifest.json">
-
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #0E0E12;
-    }
-
-    /* Shown until Flutter renders its first frame, so the page never flashes
-       a blank white screen while the engine boots. */
-    #boot-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #0E0E12;
-      transition: opacity 0.35s ease;
-    }
-
-    #boot-loader .gear {
-      font-size: 56px;
-      line-height: 1;
-      color: #FF3B57;
-      animation: boot-spin 1.4s linear infinite;
-      filter: drop-shadow(0 0 18px rgba(255, 59, 87, 0.45));
-    }
-
-    @keyframes boot-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    #boot-loader .title {
-      margin-top: 22px;
-      color: #F5F5F7;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      font-size: 18px;
-    }
-
-    #boot-loader .subtitle {
-      margin-top: 4px;
-      color: #9A9AA5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=/task-tracker-13115/">
+<title>Moved</title>
 </head>
 <body>
-  <div id="boot-loader">
-    <div class="gear">⚙</div>
-    <div class="title">13115 ROBOTICS</div>
-    <div class="subtitle">Loading task tracker…</div>
-  </div>
-
-  <script>
-    // Flutter web dispatches this once the first frame is actually on
-    // screen — a fixed timeout would either flash real content underneath
-    // the loader or hide it too early on a slow connection.
-    window.addEventListener('flutter-first-frame', function () {
-      var el = document.getElementById('boot-loader');
-      if (!el) return;
-      el.style.opacity = '0';
-      setTimeout(function () { el.remove(); }, 350);
-    });
-  </script>
-  <script src="flutter_bootstrap.js" async></script>
+<p>The task tracker moved to <a href="/task-tracker-13115/">/task-tracker-13115/</a>.</p>
 </body>
 </html>
