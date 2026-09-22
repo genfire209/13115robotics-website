@@ -1,50 +1,738 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FTC Team 13115 | Brave Robotics</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Meet RED 13115 BRAVES, a FIRST Tech Challenge robotics team committed to engineering, growth, and community.">
+<meta name="theme-color" content="#000000">
+<title>RED 13115 BRAVES | FTC Robotics</title>
+<!-- EDITING GUIDE
+  Everything is in this file. No frameworks or external dependencies.
+
+  1. COLORS      change them in :root below. The palette is red on black.
+  2. CONTENT     team members, photos, sponsors and social links live in
+                 SITE_CONTENT near the bottom of the file.
+  3. COPY        headings, mission and contact are edited directly in the HTML.
+  4. THE ROBOT   the scroll-driven teardown reads a numbered image sequence.
+                 Its settings are in SEQUENCE near the bottom:
+                   path   folder holding the frames, relative to this file
+                   count  how many frames there are
+                 Frames are named frame_0001.jpg through frame_0320.jpg and
+                 live in the "sequence" folder next to this file. Keep the two
+                 together when you upload. If the folder goes missing the
+                 section quietly falls back to plain text, so nothing breaks.
+  5. STORY BEATS the words that appear over the robot are in BEATS. start and
+                 end are positions from 0 to 1 through the teardown.
+
+  Image fields accept URLs, relative file paths or data URLs.
+  Blank image fields display intentional, labeled placeholders.
+  Save this file and reload the browser to see your changes.
+-->
+<style>
+:root{
+  --red:#e11d2e;--red-hi:#ff3b4e;
+  --bg:#000000;--panel:#0a0a0c;--elevated:#111114;
+  --ink:rgba(255,255,255,.95);--muted:rgba(255,255,255,.58);--faint:rgba(255,255,255,.34);
+  --silver:#d1d5db;--line:rgba(255,255,255,.09);
+  --radius:18px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",Inter,Roboto,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,"Roboto Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:95px;background:var(--bg);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.14) #000}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--red);color:#fff}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;top:-90px;left:20px;background:var(--red);color:#fff;padding:14px 18px;border-radius:8px;z-index:120}
+.skip:focus{top:12px}
+.wrap{width:min(1200px,calc(100% - 96px));margin:auto}
+.eyebrow{text-transform:uppercase;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.22em;color:var(--faint)}
+
+/* ---------------- top bar ---------------- */
+.topbar{height:74px;position:sticky;top:0;z-index:40;background:rgba(0,0,0,.75);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line)}
+.bar-inner{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.brand{font-size:15px;font-weight:700;letter-spacing:.03em}
+.brand span{color:var(--red)}
+.icon-btn{height:40px;width:40px;display:grid;place-items:center;border:0;background:transparent;border-radius:50%;transition:background .25s var(--ease)}
+.icon-btn:hover{background:rgba(255,255,255,.07)}
+.account{justify-self:end;border:1px solid var(--line)}
+
+/* ---------------- hero ---------------- */
+.hero{padding:88px 0 0}
+.hero-top{display:flex;justify-content:space-between;align-items:center}
+.hero-top .eyebrow:before{content:"";display:inline-block;width:26px;height:2px;background:var(--red);vertical-align:middle;margin-right:14px}
+.hero h1{font-size:clamp(62px,9.6vw,136px);line-height:.92;letter-spacing:-.065em;margin:36px 0 28px;font-weight:700}
+.hero h1 span{color:var(--red)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:52px}
+.hero-bottom p{font-size:19px;line-height:1.55;max-width:420px;color:var(--muted);margin:0}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:16px;background:var(--red);color:#fff;padding:15px 26px;border:1px solid var(--red);border-radius:99px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;transition:transform .5s var(--ease),background .4s,border-color .4s,box-shadow .5s var(--ease)}
+.pill:hover{transform:translateY(-3px);background:var(--red-hi);border-color:var(--red-hi);box-shadow:0 14px 44px -16px rgba(255,59,78,.85)}
+.pill.ghost{background:transparent;color:var(--ink);border-color:rgba(225,29,46,.55)}
+.pill.ghost:hover{background:rgba(225,29,46,.12);border-color:var(--red);box-shadow:0 14px 44px -20px rgba(255,59,78,.8)}
+.pill svg{width:17px;height:17px}
+.number-banner{border-radius:var(--radius);color:#fff;position:relative;overflow:hidden;padding:30px 36px 24px;background:linear-gradient(135deg,#e11d2e 0%,#a51120 52%,#6d0b15 100%);border:1px solid rgba(255,255,255,.1)}
+.number-banner:after{content:"";position:absolute;inset:0;background:radial-gradient(120% 140% at 12% 0%,rgba(255,255,255,.2),transparent 55%);pointer-events:none}
+.banner-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.big-number{font-size:clamp(100px,23vw,310px);font-weight:800;letter-spacing:-.075em;line-height:.94;text-align:center;margin:18px 0 10px}
+.banner-bottom{display:flex;justify-content:space-between;align-items:center;font-size:13px;opacity:.9}
+
+/* ---------------- the robot: pinned canvas teardown ---------------- */
+.robot{position:relative;background:#000;height:520vh}
+.robot-pin{position:sticky;top:0;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:#000}
+#robot-canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.robot-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 85% at 50% 50%,transparent 38%,rgba(0,0,0,.55) 100%)}
+.beats{position:absolute;inset:0;overflow:hidden}
+.beat{position:absolute;inset:0;display:flex;align-items:center;padding:96px 6vw;opacity:0;visibility:hidden;pointer-events:none}
+.beat[data-align=center]{justify-content:center}
+.beat[data-align=left]{justify-content:flex-start}
+.beat[data-align=right]{justify-content:flex-end}
+.beat-inner{display:flex;flex-direction:column;align-items:flex-start;max-width:34rem;will-change:transform,filter}
+.beat[data-align=center] .beat-inner{align-items:center;text-align:center}
+.beat[data-align=right] .beat-inner{align-items:flex-end;text-align:right}
+.beat-kicker{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.beat-kicker i{display:block;height:1px;width:38px;background:var(--red)}
+.beat-kicker em{font-style:normal;color:var(--faint)}
+.beat h2{margin:24px 0 0;font-weight:700;letter-spacing:-.05em;line-height:.96}
+.beat[data-align=center] h2{font-size:clamp(42px,7.4vw,90px);line-height:.92}
+.beat[data-align=left] h2,.beat[data-align=right] h2{font-size:clamp(34px,5vw,62px)}
+.beat-sub{margin:20px 0 0;font-size:clamp(16px,1.6vw,20px);font-weight:300;line-height:1.55;color:var(--muted)}
+.beat-body{margin:20px 0 0;font-size:17px;line-height:1.72;color:var(--muted)}
+.beat-specs{margin:34px 0 0;padding:0 0 0 20px;list-style:none;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.beat[data-align=right] .beat-specs{border-left:0;border-right:1px solid var(--line);padding:0 20px 0 0}
+.beat-specs li{display:flex;gap:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase}
+.beat[data-align=right] .beat-specs li{flex-direction:row-reverse}
+.beat-specs b{font-weight:400;color:var(--faint);width:104px;flex:none}
+.beat-specs span{color:var(--silver)}
+.beat-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;pointer-events:auto}
+.robot-rail{position:absolute;right:2.6vw;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:26px;padding-left:22px}
+.robot-rail:before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:rgba(255,255,255,.1)}
+.rail-fill{position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--red);transform:scaleY(0);transform-origin:top;box-shadow:0 0 12px rgba(225,29,46,.65)}
+.rail-dot{position:relative;background:0;border:0;padding:0;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);transition:color .5s var(--ease)}
+.rail-dot:before{content:"";position:absolute;left:-22px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:rgba(255,255,255,.25);transform:translateX(-2px);transition:background .5s var(--ease),transform .5s var(--ease),box-shadow .5s}
+.rail-dot:hover{color:rgba(255,255,255,.62)}
+.rail-dot[aria-current=step]{color:rgba(255,255,255,.9)}
+.rail-dot[aria-current=step]:before{background:var(--red);transform:translateX(-2px) scale(1.3);box-shadow:0 0 10px rgba(255,59,78,.9)}
+.robot-hud{position:absolute;left:6vw;bottom:28px;z-index:5;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);pointer-events:none}
+.robot-hud b{font-weight:400;color:var(--silver)}
+.robot-hud i{display:block;width:1px;height:12px;background:rgba(255,255,255,.15)}
+.robot-hud .live{width:5px;height:5px;border-radius:50%;background:var(--red);display:inline-block;margin-right:9px;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+.robot-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none}
+.robot-hint span{font-family:var(--mono);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--faint)}
+.robot-hint i{position:relative;display:block;width:1px;height:34px;background:rgba(255,255,255,.12);overflow:hidden}
+.robot-hint i:after{content:"";position:absolute;left:0;right:0;top:0;height:11px;background:var(--red);animation:drift 2.1s ease-in-out infinite}
+@keyframes drift{0%{transform:translateY(0);opacity:0}30%{opacity:1}100%{transform:translateY(24px);opacity:0}}
+.robot-loader{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;transition:opacity .8s var(--ease)}
+.robot-loader[hidden]{display:none}
+.robot-loader.done{opacity:0;pointer-events:none}
+.robot-loader p{margin:0 0 22px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+.robot-loader .bar{position:relative;width:min(300px,56vw);height:1px;background:rgba(255,255,255,.1);overflow:hidden}
+.robot-loader .bar i{position:absolute;top:0;bottom:0;left:0;width:0;background:var(--red);box-shadow:0 0 12px rgba(225,29,46,.8)}
+.robot-loader b{margin-top:16px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--silver);font-weight:400}
+/* Frames unavailable: collapse the pin and read the beats as plain sections. */
+.robot[data-mode=static]{height:auto}
+.robot[data-mode=static] .robot-pin{position:static;height:auto;min-height:0;padding:20px 0}
+.robot[data-mode=static] #robot-canvas,
+.robot[data-mode=static] .robot-vignette,
+.robot[data-mode=static] .robot-rail,
+.robot[data-mode=static] .robot-hud,
+.robot[data-mode=static] .robot-hint,
+.robot[data-mode=static] .robot-loader{display:none}
+.robot[data-mode=static] .beats{position:static;overflow:visible}
+.robot[data-mode=static] .beat{position:static;opacity:1;visibility:visible;padding:56px 6vw}
+.robot[data-mode=static] .beat-inner{transform:none;filter:none}
+
+/* ---------------- generic sections ---------------- */
+section.content{padding:110px 0}
+.section-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:40px}
+.section-index{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);color:var(--red);font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px}
+.section-index:after{content:"";height:1px;width:42px;background:var(--red);opacity:.45}
+h2{font-size:clamp(32px,4vw,52px);letter-spacing:-.05em;line-height:1.06;margin:0;font-weight:700}
+.section-note{color:var(--muted);font-size:15px;line-height:1.65;max-width:270px;margin:0}
+
+/* ---------------- gallery ---------------- */
+.gallery{display:grid;grid-template-columns:1.45fr 1fr 1fr;gap:18px}
+figure{margin:0}
+.photo{height:290px;background:var(--elevated);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.gallery figure:nth-child(2) .photo{background:#0e0e11}
+.gallery figure:nth-child(3) .photo{background:#130d0f}
+.placeholder{display:flex;flex-direction:column;align-items:center;gap:13px;color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:0 16px}
+.placeholder svg{width:30px;height:30px;opacity:.5}
+.photo img,.portrait img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.photo:hover img{transform:scale(1.04)}
+figcaption{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:16px 2px 0}
+figcaption span{color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.16em}
+
+/* ---------------- team ---------------- */
+.team-section{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.portrait{aspect-ratio:1/1.08;background:var(--elevated);border:1px solid var(--line);display:grid;place-items:center;border-radius:14px;overflow:hidden}
+.person h3{font-size:17px;letter-spacing:-.02em;margin:18px 0 6px}
+.person p{margin:0;color:var(--muted);font-size:14px}
+.person .placeholder svg{width:42px;height:42px}
+
+/* ---------------- mission ---------------- */
+.mission{background:var(--bg);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.mission:before{content:"";position:absolute;left:50%;top:-28%;width:900px;height:620px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(225,29,46,.13),transparent 72%);pointer-events:none}
+.mission-layout{position:relative;display:grid;grid-template-columns:1fr 1.35fr;gap:90px}
+.mission-intro{color:var(--muted);font-size:17px;line-height:1.65;margin:24px 0 0;max-width:280px}
+.pillars{list-style:none;padding:0;margin:0}
+.pillars li{padding:26px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:38px 1fr;gap:16px}
+.pillars li:first-child{padding-top:0;border:0}
+.pillar-number{color:var(--red);font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding-top:7px}
+.pillars strong{font-size:19px;letter-spacing:-.02em;display:block;margin-bottom:10px}
+.pillars p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
+
+/* ---------------- sponsors ---------------- */
+.sponsors-heading{text-align:center;margin-bottom:56px}
+.sponsors-heading h2{max-width:650px;margin:auto}
+.tier{display:grid;grid-template-columns:160px 1fr;align-items:center;padding:32px 0;border-top:1px solid var(--line);gap:25px}
+.tier-name{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.tier-logos{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:26px 55px}
+.sponsor{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.sponsor b{font-weight:650;letter-spacing:-.04em;color:rgba(255,255,255,.82)}
+.sponsor small{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:400}
+.sponsor img{object-fit:contain;max-width:100%;width:var(--logo-width);height:62px}
+.platinum{--logo-width:245px;font-size:34px}
+.gold{--logo-width:195px;font-size:27px}
+.silver{--logo-width:150px;font-size:22px}
+.bronze{--logo-width:110px;font-size:17px}
+
+/* ---------------- footer ---------------- */
+.footer{background:var(--panel);border-top:1px solid var(--line);padding:66px 0 28px}
+.footer-main{display:flex;justify-content:space-between;gap:32px;align-items:end;padding-bottom:56px}
+.footer h2{font-size:clamp(28px,3.4vw,38px);margin-bottom:20px}
+.email{font-size:clamp(16px,2.3vw,25px);letter-spacing:-.025em;display:inline-block;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:6px;transition:color .3s,border-color .3s}
+.email:hover{color:var(--red);border-color:var(--red)}
+.footer-mark{font-size:13px;line-height:1.9;color:var(--muted)}
+.footer-mark strong{display:block;color:var(--ink);font-size:15px}
+.footer-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;color:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding-right:70px}
+
+/* ---------------- floating socials + dialogs ---------------- */
+.socials{position:fixed;bottom:22px;right:22px;z-index:35;display:flex;flex-direction:column;gap:6px;padding:7px;border:1px solid var(--line);border-radius:99px;background:rgba(10,10,12,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.socials a{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;color:rgba(255,255,255,.72);transition:background .3s,color .3s,transform .4s var(--ease)}
+.socials a:hover{background:var(--red);color:#fff;transform:translateX(-3px)}
+.socials svg{width:18px;height:18px}
+.socials .filled{fill:currentColor;stroke:none}
+dialog{border:1px solid var(--line);border-radius:20px;padding:32px;max-width:430px;width:calc(100% - 40px);color:var(--ink);background:var(--elevated);box-shadow:0 30px 110px rgba(0,0,0,.8)}
+dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(6px)}
+dialog h2{font-size:28px;margin:24px 0 14px}
+dialog p{color:var(--muted);line-height:1.65}
+dialog .close{margin-left:auto}
+dialog .pill{margin-top:16px}
+.drawer{margin:0;max-width:420px;width:min(420px,90vw);height:100dvh;max-height:100dvh;border-radius:0;border-width:0 1px 0 0;padding:26px 32px;background:#050506}
+.drawer nav{display:flex;flex-direction:column;margin-top:48px}
+.drawer nav a{padding:18px 0;border-bottom:1px solid var(--line);font-size:25px;letter-spacing:-.035em;transition:color .3s,padding-left .4s var(--ease)}
+.drawer nav a:hover{color:var(--red);padding-left:8px}
+.drawer .eyebrow{margin-top:36px}
+
+/* ---------------- responsive ---------------- */
+@media(prefers-reduced-motion:no-preference){
+  .hero{animation:arrive .8s var(--ease)}
+  @keyframes arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+}
+@media(max-width:1024px){.robot-rail{display:none}}
+@media(max-width:800px){
+  .wrap{width:calc(100% - 44px)}
+  .hero{padding-top:54px}
+  .hero h1{font-size:clamp(58px,11.5vw,100px)}
+  .hero-top>span:last-child{display:none}
+  .hero-bottom{align-items:start}
+  .hero-bottom p{font-size:17px;max-width:300px}
+  .number-banner{padding:22px}
+  .big-number{font-size:24vw}
+  .gallery{grid-template-columns:1fr 1fr}
+  .gallery figure:first-child{grid-column:1/-1}
+  .gallery figure:first-child .photo{height:310px}
+  .photo{height:220px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  section.content{padding:74px 0}
+  .mission-layout{grid-template-columns:1fr;gap:42px}
+  .mission-intro{max-width:none}
+  .tier{grid-template-columns:100px 1fr}
+  .tier-logos{gap:25px}
+  .footer-main{align-items:start;flex-direction:column}
+  .robot{height:460vh}
+  .beat{padding:92px 24px}
+  .beat-specs{gap:8px}
+  .beat-specs b{width:88px}
+  .robot-hud{display:none}
+}
+@media(max-width:500px){
+  .topbar{height:64px}
+  .brand{font-size:12.5px}
+  .hero h1{font-size:17.5vw}
+  .hero-bottom,.section-top{flex-direction:column;align-items:start}
+  .hero-bottom{gap:25px}
+  .hero-bottom p{max-width:310px}
+  .banner-meta{font-size:9px}
+  .banner-bottom{font-size:11px}
+  .banner-bottom span:last-child{display:none}
+  .big-number{margin:28px 0 22px}
+  .gallery{gap:14px}
+  .photo{height:180px}
+  .gallery figure:first-child .photo{height:240px}
+  figcaption{flex-direction:column;gap:6px}
+  .team-grid{gap:24px 15px}
+  .person h3{font-size:16px}
+  .tier{grid-template-columns:1fr;gap:22px}
+  .tier-name{text-align:center}
+  .tier-logos{gap:28px}
+  .platinum{font-size:29px}
+  .gold{font-size:23px}
+  .socials{right:10px;bottom:12px;padding:4px;gap:3px}
+  .socials a{width:34px;height:34px}
+  .footer-bottom{flex-direction:column;padding-right:64px}
+  .section-note{max-width:310px}
+  .beat-specs{display:none}
+  .robot-hint{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{transition-duration:.001ms!important;animation-duration:.001ms!important;animation-iteration-count:1!important}
+}
+</style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/></symbol><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap bar-inner"><button class="icon-btn" id="menu-open" aria-label="Open navigation" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="#home" class="brand" aria-label="RED 13115 BRAVES home"><span>RED</span> 13115 BRAVES</a><button class="icon-btn account" id="account-open" aria-label="Open account" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#person"/></svg></button></div></header>
+<main id="main">
+<section class="hero wrap" id="home" aria-labelledby="hero-title"><div class="hero-top"><span class="eyebrow">FIRST Tech Challenge</span><span class="eyebrow">Engineering &bull; Teamwork &bull; Impact</span></div><h1 id="hero-title"><span>RED 13115</span><br>BRAVES.</h1><div class="hero-bottom"><p>Building robots.<br>Becoming something more.</p><a class="pill" href="#robot">See the robot <svg aria-hidden="true"><use href="#arrow"/></svg></a></div><div class="number-banner" aria-label="Team 13115, RED BRAVES"><div class="banner-meta"><span>RED BRAVES / ROBOTICS</span><span>FTC TEAM</span></div><div class="big-number" aria-hidden="true">13115</div><div class="banner-bottom"><span>Built together. Driven by possibility.</span><span>FIRST TECH CHALLENGE</span></div></div></section>
 
-<header>
-  <h1>FTC TEAM 13115</h1>
-  <p>Brave Robotics</p>
-</header>
+<!-- The scroll-driven teardown. Beats, rail and canvas are all built from
+     BEATS and SEQUENCE in the script at the bottom. -->
+<section class="robot" id="robot" aria-labelledby="robot-title">
+  <h2 id="robot-title" class="vh">The robot, taken apart</h2>
+  <p class="vh">Scroll to disassemble the chassis into its frame, drivetrain and electronics, then watch it rebuild. Each stage is described in the text that follows.</p>
+  <div class="robot-pin">
+    <canvas id="robot-canvas" aria-hidden="true"></canvas>
+    <div class="robot-vignette" aria-hidden="true"></div>
+    <div class="beats" id="robot-beats"></div>
+    <div class="robot-rail" id="robot-rail" aria-label="Teardown chapters"><span class="rail-fill" id="rail-fill" aria-hidden="true"></span></div>
+    <div class="robot-hud" aria-hidden="true"><span>FRAME <b id="hud-frame">0001</b> / <span id="hud-total">320</span></span><i></i><span><span class="live"></span><b id="hud-pct">00%</b></span></div>
+    <div class="robot-hint" id="robot-hint" aria-hidden="true"><span>Scroll</span><i></i></div>
+    <div class="robot-loader" id="robot-loader"><p>Buffering teardown</p><div class="bar"><i id="loader-bar"></i></div><b id="loader-pct">000</b></div>
+  </div>
+</section>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#robot">Our Robot</a>
-  <a href="#sponsors">Sponsors</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<main>
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are FTC Team 13115, Brave Robotics, competing in the FIRST Tech Challenge. This site is a work in progress — check back soon for updates on our season, robot design, and team achievements.</p>
-  </section>
-
-  <section id="robot">
-    <h2>Our Robot</h2>
-    <p>Details and photos of our robot for this season's game coming soon.</p>
-  </section>
-
-  <section id="sponsors">
-    <h2>Sponsors</h2>
-    <p>We're grateful for the support of our sponsors. Sponsor info coming soon.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Want to get in touch? Reach out via our socials or email (coming soon).</p>
-  </section>
+<section class="content wrap" id="photos"><div class="section-top"><div><div class="section-index">01 / In our element</div><h2>Team Photos</h2></div><p class="section-note">The people, the process,<br>and everything in between.</p></div><div class="gallery" id="gallery"></div></section>
+<section class="content team-section" id="team"><div class="wrap"><div class="section-top"><div><div class="section-index">02 / The people behind the robot</div><h2>Meet the Team</h2></div><p class="section-note">Different strengths. One team.</p></div><div class="team-grid" id="team-grid"></div></div></section>
+<section class="content mission" id="mission"><span id="about" aria-hidden="true"></span><div class="wrap mission-layout"><div><div class="section-index">03 / What drives us</div><h2>Our Mission</h2><p class="mission-intro">Our mission is a commitment to four core pillars:</p></div><ul class="pillars"><li><span class="pillar-number" aria-hidden="true">01</span><div><strong>Technical Excellence:</strong><p>Pushing the boundaries of engineering, design, and innovation.</p></div></li><li><span class="pillar-number" aria-hidden="true">02</span><div><strong>Personal Growth:</strong><p>Fostering hands-on skills, leadership, and a collaborative team culture.</p></div></li><li><span class="pillar-number" aria-hidden="true">03</span><div><strong>Community Impact:</strong><p>Sharing our passion for STEM and empowering others beyond our workshop.</p></div></li><li><span class="pillar-number" aria-hidden="true">04</span><div><strong>Core Values:</strong><p>Living Gracious Professionalism and Coopertition in everything we do, on and off the field.</p></div></li></ul></div></section>
+<section class="content wrap" id="sponsors"><div class="sponsors-heading"><div class="section-index">04 / Making it possible</div><h2>Thank You to<br>Our Sponsors</h2></div><div id="sponsor-tiers"></div></section>
 </main>
+<footer class="footer" id="contact"><div class="wrap"><div class="footer-main"><div><div class="section-index">05 / Let&rsquo;s connect</div><h2>Great things start<br>with a conversation.</h2><a class="email" href="mailto:bravesred13115@gmail.com">bravesred13115@gmail.com &#8599;</a></div><div class="footer-mark"><strong>RED 13115 BRAVES</strong>FIRST Tech Challenge<br>Engineering with purpose.</div></div><div class="footer-bottom"><span>&copy; <span id="year"></span> RED 13115 BRAVES</span><a href="#home">Back to top &#8593;</a></div></div></footer>
+<aside class="socials" aria-label="Follow the Braves"><a href="#" data-social="tiktok" aria-label="TikTok &mdash; placeholder link" title="TikTok &mdash; coming soon"><svg class="filled" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h3c.3 2.4 1.7 3.8 4 4v3a9 9 0 0 1-4-1.2V16a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3Z"/></svg></a><a href="#" data-social="instagram" aria-label="Instagram &mdash; placeholder link" title="Instagram &mdash; coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="#" data-social="youtube" aria-label="YouTube &mdash; placeholder link" title="YouTube &mdash; coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a></aside>
+<dialog class="drawer" id="menu" aria-label="Navigation"><button class="icon-btn close" data-close aria-label="Close navigation">&#10005;</button><div class="eyebrow">RED 13115 BRAVES</div><nav aria-label="Main navigation"><a href="#home">Home</a><a href="#robot">The Robot</a><a href="#photos">Team Photos</a><a href="#team">Meet the Team</a><a href="#mission">Our Mission</a><a href="#sponsors">Sponsors</a><a href="#contact">Contact</a></nav></dialog>
+<dialog id="account" aria-labelledby="account-title"><button class="icon-btn close" data-close aria-label="Close account">&#10005;</button><svg aria-hidden="true"><use href="#person"/></svg><h2 id="account-title">Team account</h2><p>This is a placeholder for a future team login. Account access isn&rsquo;t available yet.</p><button class="pill" data-close>Got it</button></dialog>
+<dialog id="social-message" aria-labelledby="social-title"><button class="icon-btn close" data-close aria-label="Close message">&#10005;</button><h2 id="social-title">Find us on social</h2><p id="social-copy"></p><button class="pill" data-close>Got it</button></dialog>
+<noscript><p style="padding:24px;color:#fff">Enable JavaScript to view the robot teardown, team, gallery and sponsors. Contact us at <a href="mailto:bravesred13115@gmail.com" style="color:#e11d2e">bravesred13115@gmail.com</a>.</p></noscript>
+<script>
+/* ==================== EDIT YOUR CONTENT HERE ====================
+   Replace empty image strings with your image URL or path.
+   Add/remove entries by copying/deleting an object. Keep commas between objects.
+   Roles and all names below are placeholders. Social URLs are intentionally blank.
+   Sponsor sizes are automatically determined by tier.
+*/
+const SITE_CONTENT = {
+  photos: [
+    { image: '', alt: 'Team photo', caption: 'Together, we build.', label: 'Team photo placeholder' },
+    { image: '', alt: 'Team working on the robot', caption: 'Inside the workshop.', label: 'Workshop photo placeholder' },
+    { image: '', alt: 'Team at an FTC event', caption: 'Ready for the field.', label: 'Competition photo placeholder' }
+  ],
+  members: [
+    { name: 'Member Name', role: 'Team Captain', image: '' },
+    { name: 'Member Name', role: 'Mechanical Engineer', image: '' },
+    { name: 'Member Name', role: 'Programmer', image: '' },
+    { name: 'Member Name', role: 'Outreach Lead', image: '' }
+  ],
+  sponsors: [
+    { tier: 'Platinum', sponsors: [{ name: 'Sponsor Name', logo: '' }] },
+    { tier: 'Gold', sponsors: [{ name: 'Sponsor Name', logo: '' }, { name: 'Sponsor Name', logo: '' }] },
+    { tier: 'Silver', sponsors: [{ name: 'Sponsor Name', logo: '' }, { name: 'Sponsor Name', logo: '' }, { name: 'Sponsor Name', logo: '' }] },
+    { tier: 'Bronze', sponsors: [{ name: 'Sponsor Name', logo: '' }, { name: 'Sponsor Name', logo: '' }, { name: 'Sponsor Name', logo: '' }] }
+  ],
+  social: { tiktok: '', instagram: '', youtube: '' }
+};
 
-<footer>
-  &copy; 2026 FTC Team 13115 &mdash; Brave Robotics
-</footer>
+/* Where the teardown frames live, relative to this file. */
+const SEQUENCE = { path: 'sequence/', prefix: 'frame_', ext: '.jpg', pad: 4, count: 320 };
 
+/* The words over the robot. start/end are positions from 0 to 1 through the
+   teardown, so 0.4 means "40% of the way through the scroll". */
+const BEATS = [
+  { id: 'machine', chapter: 'The Machine', index: '01', align: 'center', start: 0, end: 0.15, holdIn: true,
+    kicker: 'The Machine',
+    headline: 'Meet the machine.',
+    sub: 'Every part of it, engineered by students.' },
+  { id: 'structure', chapter: 'Structure', index: '02', align: 'left', start: 0.15, end: 0.4,
+    kicker: 'Structure',
+    headline: 'Built from the frame up.',
+    body: 'Perforated aluminium channel gives us a mounting point every eight millimetres. Rigid enough to survive a full match, open enough to rebuild between them.',
+    specs: [['Frame', '6061-T6 aluminium'], ['Pitch', '8 mm hole grid'], ['Rebuild', 'Under 20 minutes']] },
+  { id: 'drivetrain', chapter: 'Drivetrain', index: '03', align: 'right', start: 0.4, end: 0.65,
+    kicker: 'Drivetrain',
+    headline: 'Four wheels. Every direction.',
+    body: 'Mecanum wheels on high-torque planetary motors. The drivetrain strafes, pivots and corrects without ever turning the chassis.',
+    specs: [['Wheels', '104 mm mecanum'], ['Gearbox', '19.2:1 planetary'], ['Top speed', '1.62 m/s']] },
+  { id: 'electronics', chapter: 'Electronics', index: '04', align: 'left', start: 0.65, end: 0.85,
+    kicker: 'Electronics',
+    headline: 'Wired with intent.',
+    body: 'A single regulated spine feeds both control hubs. Every run is labelled, strain-relieved and routed clear of anything that moves.',
+    specs: [['Bus', '12 V regulated'], ['Control', 'Dual expansion hub'], ['Loop rate', '100 Hz']] },
+  { id: 'ready', chapter: 'Ready', index: '05', align: 'center', start: 0.85, end: 1, holdOut: true,
+    kicker: 'Reassembled',
+    headline: 'Competition ready.',
+    sub: 'Built together. Driven by possibility.',
+    cta: [['Meet the team', '#team', ''], ['Our sponsors', '#sponsors', 'ghost']] }
+];
+/* ==================== END EDITABLE CONTENT ==================== */
+
+const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+function placeholder(label, icon='image') { return `<div class="placeholder"><svg aria-hidden="true"><use href="#${icon}"/></svg><span>${esc(label)}</span></div>`; }
+function photo(src, alt, label, icon) { return src ? `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">` : placeholder(label, icon); }
+document.getElementById('gallery').innerHTML = SITE_CONTENT.photos.map((p,i)=>`<figure><div class="photo">${photo(p.image,p.alt,p.label)}</div><figcaption>${esc(p.caption)}<span>${String(i+1).padStart(2,'0')}</span></figcaption></figure>`).join('');
+document.getElementById('team-grid').innerHTML = SITE_CONTENT.members.map(m=>`<article class="person"><div class="portrait">${photo(m.image,m.name,'Photo placeholder','person')}</div><h3>${esc(m.name)}</h3><p>${esc(m.role)}</p></article>`).join('');
+document.getElementById('sponsor-tiers').innerHTML = SITE_CONTENT.sponsors.map(t=>`<div class="tier ${esc(t.tier.toLowerCase())}"><div class="tier-name">${esc(t.tier)}</div><div class="tier-logos">${t.sponsors.map(s=>`<div class="sponsor">${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)}" loading="lazy">`:`<b>${esc(s.name)}</b><small>Logo placeholder</small>`}</div>`).join('')}</div></div>`).join('');
+document.querySelectorAll('#gallery img,#team-grid img,#sponsor-tiers img').forEach(img=>img.addEventListener('error',()=>{img.replaceWith(Object.assign(document.createElement('span'),{className:'placeholder',textContent:'Image unavailable'}));}));
+document.getElementById('year').textContent=new Date().getFullYear();
+const menu=document.getElementById('menu');
+function openDialog(dialog){dialog.showModal();document.body.style.overflow='hidden';}
+document.getElementById('menu-open').addEventListener('click',()=>{openDialog(menu);document.getElementById('menu-open').setAttribute('aria-expanded','true');});
+document.getElementById('account-open').addEventListener('click',()=>openDialog(document.getElementById('account')));
+document.querySelectorAll('dialog').forEach(dialog=>{dialog.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>dialog.close()));dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>{document.body.style.overflow='';if(dialog===menu)document.getElementById('menu-open').setAttribute('aria-expanded','false');});});
+menu.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu.close()));
+document.querySelectorAll('[data-social]').forEach(a=>{const network=a.dataset.social;const label={tiktok:'TikTok',instagram:'Instagram',youtube:'YouTube'}[network];const url=SITE_CONTENT.social[network];if(url && /^https?:\/\//i.test(url)){a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label',label);a.title=label;}else{a.addEventListener('click',event=>{event.preventDefault();document.getElementById('social-copy').textContent=`Our ${label} link is coming soon. Check back for updates from the Braves.`;openDialog(document.getElementById('social-message'));});}});
+
+/* ==================== THE ROBOT: SCROLL-DRIVEN TEARDOWN ====================
+   A 320-frame image sequence played on a canvas, scrubbed by scroll position.
+   The same progress value drives the frame, the copy, the chapter rail and the
+   readout, so the words can never drift away from the picture.
+*/
+(function robotTeardown(){
+  const section = document.getElementById('robot');
+  if (!section || !window.requestAnimationFrame) return;
+
+  const canvas    = document.getElementById('robot-canvas');
+  const beatsHost = document.getElementById('robot-beats');
+  const railHost  = document.getElementById('robot-rail');
+  const railFill  = document.getElementById('rail-fill');
+  const hudFrame  = document.getElementById('hud-frame');
+  const hudTotal  = document.getElementById('hud-total');
+  const hudPct    = document.getElementById('hud-pct');
+  const hint      = document.getElementById('robot-hint');
+  const loader    = document.getElementById('robot-loader');
+  const loaderBar = document.getElementById('loader-bar');
+  const loaderPct = document.getElementById('loader-pct');
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const total  = SEQUENCE.count;
+  hudTotal.textContent = total;
+
+  /* ---------- build the copy and the rail from BEATS ---------- */
+  beatsHost.innerHTML = BEATS.map(b => {
+    const specs = b.specs ? `<ul class="beat-specs">${b.specs.map(s=>`<li><b>${esc(s[0])}</b><span>${esc(s[1])}</span></li>`).join('')}</ul>` : '';
+    const sub   = b.sub  ? `<p class="beat-sub">${esc(b.sub)}</p>` : '';
+    const body  = b.body ? `<p class="beat-body">${esc(b.body)}</p>` : '';
+    const cta   = b.cta  ? `<div class="beat-cta">${b.cta.map(c=>`<a class="pill ${esc(c[2])}" href="${esc(c[1])}">${esc(c[0])}</a>`).join('')}</div>` : '';
+    return `<div class="beat" id="beat-${esc(b.id)}" data-align="${esc(b.align)}">
+      <div class="beat-inner">
+        <div class="beat-kicker"><span>${esc(b.index)}</span><i></i><em>${esc(b.kicker)}</em></div>
+        <h2>${esc(b.headline)}</h2>${sub}${body}${specs}${cta}
+      </div>
+    </div>`;
+  }).join('');
+
+  railHost.insertAdjacentHTML('beforeend', BEATS.map((b,i)=>
+    `<button type="button" class="rail-dot" data-i="${i}">${esc(b.chapter)}</button>`).join(''));
+
+  const beatEls = BEATS.map(b => ({
+    beat : b,
+    root : document.getElementById('beat-' + b.id),
+    inner: document.querySelector('#beat-' + b.id + ' .beat-inner'),
+    o: -1, t: '', f: ''
+  }));
+  const railDots = Array.prototype.slice.call(railHost.querySelectorAll('.rail-dot'));
+
+  /* Scroll position, in page pixels, where a given progress value sits. */
+  function scrollForProgress(p){
+    const top = section.getBoundingClientRect().top + window.pageYOffset;
+    const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
+    return top + scrollable * Math.min(1, Math.max(0, p));
+  }
+  railDots.forEach(dot => dot.addEventListener('click', () => {
+    const b = BEATS[+dot.dataset.i];
+    const p = b.holdIn ? 0 : b.holdOut ? 1 : b.start + (b.end - b.start) * 0.45;
+    window.scrollTo({ top: scrollForProgress(p), behavior: reduce ? 'auto' : 'smooth' });
+  }));
+
+  /* ---------- loading ----------
+     Frames arrive coarse-to-fine rather than 1 to 320, so the whole teardown
+     becomes scrubbable after about sixty images instead of only its opening.
+  */
+  const frames = new Array(total).fill(null);
+  const src = i => SEQUENCE.path + SEQUENCE.prefix + String(i+1).padStart(SEQUENCE.pad,'0') + SEQUENCE.ext;
+
+  const conn = navigator.connection || {};
+  const step = (window.innerWidth < 768 || conn.saveData) ? 2 : 1;
+
+  const order = [];
+  const seen  = {};
+  let readyAt = 0;
+  (function buildOrder(){
+    const push = i => { if (i >= 0 && i < total && !seen[i]) { seen[i] = 1; order.push(i); } };
+    push(0); push(total - 1);
+    const strides = [16, 8, 4, 2, 1];
+    for (let s = 0; s < strides.length; s++) {
+      if (strides[s] < step) break;
+      for (let i = 0; i < total; i += strides[s]) push(i);
+      if (strides[s] === 8) readyAt = order.length;
+    }
+    if (!readyAt) readyAt = order.length;
+  })();
+
+  let loaded = 0, cursor = 0, loaderDone = false, repaintQueued = false;
+
+  function queueRepaint(){
+    if (repaintQueued) return;
+    repaintQueued = true;
+    requestAnimationFrame(() => { repaintQueued = false; drawFrame(current); paintLoader(); });
+  }
+  function paintLoader(){
+    if (loaderDone) return;
+    const p = Math.min(1, loaded / readyAt);
+    loaderBar.style.width = (p * 100).toFixed(1) + '%';
+    loaderPct.textContent = String(Math.round(p * 100)).padStart(3, '0');
+    if (loaded >= readyAt) {
+      loaderDone = true;
+      loader.classList.add('done');
+      setTimeout(() => { loader.hidden = true; }, 900);
+    }
+  }
+  function loadNext(){
+    while (cursor < order.length && frames[order[cursor]]) { cursor++; loaded++; }
+    if (cursor >= order.length) return;
+    const index = order[cursor++];
+    const img = new Image();
+    img.decoding = 'async';
+    const done = ok => { if (ok) frames[index] = img; loaded++; queueRepaint(); loadNext(); };
+    img.onload  = () => done(true);
+    img.onerror = () => done(false);
+    img.src = src(index);
+  }
+
+  /* ---------- canvas ---------- */
+  const ctx = canvas.getContext('2d', { alpha: false });
+  let size = { w: 0, h: 0, dpr: 0 };
+  let lastFrame = -1;
+
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = Math.round(r.width), h = Math.round(r.height);
+    if (!w || !h) return false;
+    if (size.w === w && size.h === h && size.dpr === dpr) return false;
+    size = { w: w, h: h, dpr: dpr };
+    canvas.width  = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, w, h);
+    lastFrame = -1;
+    return true;
+  }
+
+  /* Nearest decoded neighbour: a frame or two stale is invisible in motion,
+     a black flash is not. */
+  function pick(i){
+    if (frames[i]) return i;
+    for (let r = 1; r <= 40; r++) {
+      if (i - r >= 0 && frames[i-r]) return i - r;
+      if (i + r < total && frames[i+r]) return i + r;
+    }
+    return -1;
+  }
+
+  function drawFrame(p){
+    if (!size.w) return;
+    const got = pick(Math.round(p * (total - 1)));
+    if (got < 0 || got === lastFrame) return;
+    lastFrame = got;
+    const img = frames[got];
+    /* contain, never cover: exploded parts touch the edges of the frame, and
+       the letterboxing is invisible because the frame border and the page are
+       both pure black. */
+    const s  = Math.min(size.w / img.naturalWidth, size.h / img.naturalHeight);
+    const dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, size.w, size.h);
+    ctx.drawImage(img, (size.w - dw) / 2, (size.h - dh) / 2, dw, dh);
+  }
+
+  /* ---------- copy, rail and readout ---------- */
+  function between(p, xs, ys){
+    if (p <= xs[0]) return ys[0];
+    for (let i = 1; i < xs.length; i++) {
+      if (p <= xs[i]) {
+        const span = xs[i] - xs[i-1];
+        const t = span <= 0 ? 1 : (p - xs[i-1]) / span;
+        return ys[i-1] + (ys[i] - ys[i-1]) * t;
+      }
+    }
+    return ys[ys.length - 1];
+  }
+
+  let lastRail = -1;
+  function paintBeats(p){
+    for (let i = 0; i < beatEls.length; i++) {
+      const e = beatEls[i], b = e.beat;
+      const fade = Math.min(0.05, (b.end - b.start) * 0.34);
+      const xs = [b.start, b.start + fade, b.end - fade, b.end];
+      const o  = between(p, xs, [b.holdIn ? 1 : 0, 1, 1, b.holdOut ? 1 : 0]);
+      const or = Math.round(o * 1000) / 1000;
+      if (or !== e.o) {
+        e.root.style.opacity = or;
+        /* Hidden beats must not keep their buttons clickable. */
+        e.root.style.visibility = or <= 0.002 ? 'hidden' : 'visible';
+        e.o = or;
+      }
+      if (or <= 0.002) continue;
+      const dir = b.align === 'left' ? -1 : b.align === 'right' ? 1 : 0;
+      const tx  = between(p, xs, [b.holdIn ? 0 : dir * 70, 0, 0, b.holdOut ? 0 : dir * 42]);
+      const ty  = dir ? 0 : between(p, xs, [b.holdIn ? 0 : 42, 0, 0, b.holdOut ? 0 : -42]);
+      const bl  = between(p, xs, [b.holdIn ? 0 : 7, 0, 0, b.holdOut ? 0 : 6]);
+      const t   = 'translate3d(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px,0)';
+      const f   = bl < 0.06 ? 'none' : 'blur(' + bl.toFixed(2) + 'px)';
+      if (t !== e.t) { e.inner.style.transform = t; e.t = t; }
+      if (f !== e.f) { e.inner.style.filter = f; e.f = f; }
+    }
+  }
+
+  function paintChrome(p){
+    railFill.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+    let idx = 0;
+    for (let i = BEATS.length - 1; i >= 0; i--) { if (p >= BEATS[i].start) { idx = i; break; } }
+    if (idx !== lastRail) {
+      for (let i = 0; i < railDots.length; i++) {
+        if (i === idx) railDots[i].setAttribute('aria-current', 'step');
+        else railDots[i].removeAttribute('aria-current');
+      }
+      lastRail = idx;
+    }
+    hudFrame.textContent = String(Math.round(p * (total - 1)) + 1).padStart(4, '0');
+    hudPct.textContent   = String(Math.round(p * 100)).padStart(2, '0') + '%';
+    hint.style.opacity   = p < 0.035 ? (1 - p / 0.035).toFixed(2) : 0;
+  }
+
+  function render(p){ drawFrame(p); paintBeats(p); paintChrome(p); }
+
+  /* ---------- the scroll loop ----------
+     Smoothing is time-based rather than per-frame, so a 144 Hz display and a
+     60 Hz one settle at the same speed. The loop stops as soon as it has
+     caught up and restarts on the next scroll, so an idle page costs nothing.
+  */
+  let target = 0, current = 0, running = false, lastT = 0, inView = false;
+
+  function progressNow(){
+    const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
+    return Math.min(1, Math.max(0, -section.getBoundingClientRect().top / scrollable));
+  }
+  function tick(now){
+    const dt = Math.min(64, now - lastT || 16);
+    lastT = now;
+    target = progressNow();
+    if (reduce) current = target;
+    else current += (target - current) * (1 - Math.exp(-dt / 90));
+    if (Math.abs(target - current) < 0.0003) current = target;
+    render(current);
+    if (current !== target) requestAnimationFrame(tick);
+    else running = false;
+  }
+  function start(){
+    if (running) return;
+    running = true;
+    lastT = performance.now();
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- go ----------
+     Nothing is wired up until the first frame proves the sequence folder is
+     really there. That ordering matters: if it is missing, no listener ever
+     runs, so nothing can leave the copy stranded at opacity zero.
+  */
+  function activate(){
+    addEventListener('scroll', () => { if (inView) start(); }, { passive: true });
+
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(entries => {
+        const nowIn = entries[0].isIntersecting;
+        /* Coming back into view, snap rather than sweep through the frames. */
+        if (nowIn && !inView) { current = target = progressNow(); render(current); }
+        inView = nowIn;
+        if (inView) start();
+      }, { rootMargin: '250px 0px' }).observe(section);
+    } else {
+      inView = true;
+    }
+
+    if (window.ResizeObserver) {
+      new ResizeObserver(() => { if (resize()) render(current); }).observe(canvas);
+    } else {
+      addEventListener('resize', () => { if (resize()) render(current); });
+    }
+
+    resize();
+    render(0);
+    const lanes = Math.min(8, Math.max(4, (navigator.hardwareConcurrency || 4) + 2));
+    for (let i = 0; i < lanes; i++) loadNext();
+    start();
+  }
+
+  /* Nothing is fetched until the visitor shows some intent. Someone who lands
+     on the homepage and leaves without ever scrolling pays nothing for the
+     33 MB of frames; anyone who engages still gets the whole height of the
+     hero as buffering time before the teardown comes into view. */
+  const WAKE = ['scroll', 'wheel', 'touchstart', 'keydown', 'pointerdown'];
+  let triggerObserver = null;
+  let armed = false;
+
+  function arm(){
+    if (armed) return;
+    armed = true;
+    WAKE.forEach(evt => removeEventListener(evt, arm));
+    if (triggerObserver) triggerObserver.disconnect();
+
+    const probe = new Image();
+    probe.onload = () => { frames[0] = probe; activate(); };
+    probe.onerror = () => {
+      section.dataset.mode = 'static';
+      loader.hidden = true;
+    };
+    probe.src = src(0);
+  }
+
+  WAKE.forEach(evt => addEventListener(evt, arm, { passive: true }));
+
+  /* Landing straight on /#robot fires no scroll event, so watch for the
+     section arriving under its own steam as well. */
+  if (window.IntersectionObserver) {
+    triggerObserver = new IntersectionObserver(es => { if (es[0].isIntersecting) arm(); });
+    triggerObserver.observe(section);
+  } else {
+    arm();
+  }
+})();
+</script>
 </body>
 </html>
