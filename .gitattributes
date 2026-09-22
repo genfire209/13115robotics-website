@@ -1,0 +1,9 @@
+# core.autocrlf is on system-wide. Git detects JPEGs as binary on its own, but
+# the failure mode if it ever guessed wrong is 320 silently corrupted frames on
+# the live site, so state it outright.
+*.jpg binary
+*.png binary
+*.woff2 binary
+*.wasm binary
+*.otf binary
+*.ttf binary
