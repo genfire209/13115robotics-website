@@ -21,6 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Build-season task board for FTC Robotics Team 13115 — assign, claim, and track tasks across mechanical, outreach, programming, and strategy.">
   <meta name="theme-color" content="#0E0E12">
+  <meta name="color-scheme" content="dark">
 
   <!-- Google Sign-In: web OAuth client, shared with the Android build's serverClientId. -->
   <meta name="google-signin-client_id" content="842144934667-s17d17dsjagqg8qkjel9ankn4ndcbip4.apps.googleusercontent.com">
@@ -43,6 +44,13 @@
       height: 100%;
       margin: 0;
       background: #0E0E12;
+      /* Flutter's own engine already owns tap-highlight, user-select and
+         touch-action on its canvas (see main.dart.js) - but not this:
+         without it, dragging past the top/bottom of a Flutter ListView
+         can trigger the browser's own pull-to-refresh or rubber-band
+         bounce underneath the app, which reads as a page, not an app. */
+      overscroll-behavior: none;
+      -webkit-text-size-adjust: 100%;
     }
 
     /* Shown until Flutter renders its first frame, so the page never flashes
