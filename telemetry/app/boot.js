@@ -2,6 +2,11 @@
 // a note pointing to the app instead, and never download the app itself.
 (function () {
   'use strict';
+  // Inside another site's frame (clickjacking): don't run; offer a link to open it properly.
+  if (window.top !== window.self) {
+    document.documentElement.classList.add('framed');
+    return;
+  }
   var ua = navigator.userAgent || '';
   var phoneOrTablet =
     /Android|iPhone|iPad|iPod|Mobile|Silk|Kindle|BlackBerry|Opera Mini|IEMobile/i.test(ua) ||

@@ -52,6 +52,8 @@
     background: var(--surface); border: 1px solid var(--outline); color: var(--text);
   }
   nav.links a.primary { background: #D61F3A; border-color: #D61F3A; color: #FFFFFF; } /* white on it: 5.1:1 */
+  /* The computer version only opens on computers: phones and tablets don't get the button. */
+  @media (pointer: coarse) { nav.links a.computer { display: none; } }
   .back { color: var(--muted); font-size: 15px; }
   footer { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; color: var(--muted); font-size: 14px; }
   /* Phones: each table row is a card, every value labelled, so nothing is cut off. */
@@ -92,7 +94,7 @@ Its assistant's AI runs on your own phone or computer, never on our servers.</p>
 <p>Your captain registers your team, you join with the team's invite code, and everything stays
 inside your team. Telemetry is free, and we're testing it first with teams in New Jersey's Southern League.</p>
 <nav class="links" aria-label="Telemetry pages">
-  <a class="primary" href="app/">Open Telemetry on your computer</a>
+  <a class="primary computer" href="app/">Open Telemetry on your computer</a>
   <a href="privacy/">Privacy policy</a>
   <a href="delete-account/">Delete your account</a>
   <a href="mailto:telemetry.ftc13115@gmail.com">Contact us</a>

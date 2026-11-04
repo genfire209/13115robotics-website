@@ -13,8 +13,9 @@
 (function () {
   'use strict';
 
-  // Pinned: the WebLLM library (from jsDelivr) and the model it downloads (from Hugging Face).
-  var WEBLLM = 'https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.86/+esm';
+  // Pinned: the WebLLM library (served from this site; tool/build_web.sh fetches
+  // it from npm and checks its hash) and the model it downloads (from Hugging Face).
+  var WEBLLM = new URL('vendor/web-llm-0.2.86.js', document.baseURI).href;
   var QWEN_F16 = 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC';
   var QWEN_F32 = 'Qwen2.5-1.5B-Instruct-q4f32_1-MLC';
   var OLLAMA = 'http://localhost:11434';

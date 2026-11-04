@@ -52,6 +52,8 @@
     background: var(--surface); border: 1px solid var(--outline); color: var(--text);
   }
   nav.links a.primary { background: #D61F3A; border-color: #D61F3A; color: #FFFFFF; } /* white on it: 5.1:1 */
+  /* The computer version only opens on computers: phones and tablets don't get the button. */
+  @media (pointer: coarse) { nav.links a.computer { display: none; } }
   .back { color: var(--muted); font-size: 15px; }
   footer { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; color: var(--muted); font-size: 14px; }
   /* Phones: each table row is a card, every value labelled, so nothing is cut off. */
