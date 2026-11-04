@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Replaced by flutter build web --base-href (the site serves it at /telemetry/app/). -->
+  <base href="/telemetry/app/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Telemetry for FTC teams, on your computer: tasks, meets, scouting, team tools and the assistant.">
+  <meta name="theme-color" content="#0E0E12">
+  <meta name="color-scheme" content="dark">
+  <!--
+    What this page may load. Scripts come only from this site, Google's
+    sign-in button, and jsDelivr (the WebLLM library, only if the assistant
+    runs its model in the browser); no inline scripts. Connections: the
+    Telemetry server, Google sign-in and fonts, and the assistant's model
+    download (Hugging Face, GitHub) or Ollama on this computer.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    script-src 'self' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style;
+    img-src 'self' data: blob: https://*.supabase.co https://*.googleusercontent.com;
+    font-src 'self' data: https://fonts.gstatic.com;
+    connect-src 'self' https://sqjxfmsxrrudseajzide.supabase.co https://accounts.google.com/gsi/ https://fonts.gstatic.com
+      https://cdn.jsdelivr.net https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com
+      http://localhost:11434 http://127.0.0.1:11434;
+    frame-src https://accounts.google.com/gsi/;
+    worker-src 'self' blob:;
+    object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <title>Telemetry</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #0E0E12;
+      color: #F5F5F7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      /* Without this, scrolling past the end of a list bounces the page itself. */
+      overscroll-behavior: none;
+    }
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+      text-align: center;
+      background: #0E0E12;
+    }
+    #boot { z-index: 9999; transition: opacity 0.3s ease; }
+    .gear { font-size: 56px; line-height: 1; color: #FF3B57; }
+    #boot .gear { animation: spin 1.6s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { #boot .gear { animation: none; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .name { margin-top: 20px; font-weight: 800; letter-spacing: 2px; font-size: 18px; }
+    .note { margin-top: 6px; color: #9A9AA5; font-size: 14px; max-width: 26em; line-height: 1.5; }
+    #phone { display: none; }
+    #phone h1 { font-size: 22px; margin: 20px 0 8px; }
+    #phone a {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: #D61F3A;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    html.phone #phone { display: flex; }
+    html.phone #boot { display: none; }
+  </style>
+  <!-- Decides between the app (computers) and the note for phones and tablets, before anything big downloads. -->
+  <script src="boot.js"></script>
+</head>
+<body>
+  <div id="boot" class="screen" aria-live="polite">
+    <div class="gear" aria-hidden="true">⚙</div>
+    <div class="name">TELEMETRY</div>
+    <div class="note">Loading...</div>
+  </div>
+
+  <div id="phone" class="screen">
+    <div class="gear" aria-hidden="true">⚙</div>
+    <h1>Telemetry on the web is for computers</h1>
+    <p class="note">On a phone or tablet, use the Telemetry app. Your team and your assistant chats are the same in both.</p>
+    <a href="../">About Telemetry</a>
+  </div>
+
+  <noscript>
+    <div class="screen"><p class="note">Telemetry needs JavaScript turned on.</p></div>
+  </noscript>
+</body>
+</html>
