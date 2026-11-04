@@ -57,10 +57,10 @@
       background: #0E0E12;
     }
     #boot { z-index: 9999; transition: opacity 0.3s ease; }
-    .gear { font-size: 56px; line-height: 1; color: #FF3B57; }
-    #boot .gear { animation: spin 1.6s linear infinite; }
-    @media (prefers-reduced-motion: reduce) { #boot .gear { animation: none; } }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .mark { display: block; filter: drop-shadow(0 0 24px rgba(255, 59, 87, 0.3)); }
+    #boot .mark { animation: pulse 1.4s ease-in-out infinite alternate; }
+    @media (prefers-reduced-motion: reduce) { #boot .mark { animation: none; } }
+    @keyframes pulse { from { opacity: 0.55; } to { opacity: 1; } }
     .name { margin-top: 20px; font-weight: 800; letter-spacing: 2px; font-size: 18px; }
     .note { margin-top: 6px; color: #9A9AA5; font-size: 14px; max-width: 26em; line-height: 1.5; }
     #phone { display: none; }
@@ -88,19 +88,19 @@
 </head>
 <body>
   <div id="boot" class="screen" aria-live="polite">
-    <div class="gear" aria-hidden="true">⚙</div>
+    <img class="mark" src="logo.svg" alt="" width="96" height="96">
     <div class="name">TELEMETRY</div>
     <div class="note">Loading...</div>
   </div>
 
   <div id="framed" class="screen">
-    <div class="gear" aria-hidden="true">⚙</div>
+    <img class="mark" src="logo.svg" alt="" width="80" height="80">
     <h1>Open Telemetry in its own tab</h1>
     <a href="./" target="_top" rel="noopener">Open Telemetry</a>
   </div>
 
   <div id="phone" class="screen">
-    <div class="gear" aria-hidden="true">⚙</div>
+    <img class="mark" src="logo.svg" alt="" width="80" height="80">
     <h1>Telemetry on the web is for computers</h1>
     <p class="note">On a phone or tablet, use the Telemetry app. Your team and your assistant chats are the same in both.</p>
     <a href="../">About Telemetry</a>
