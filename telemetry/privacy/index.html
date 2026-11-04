@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telemetry Privacy Policy</title>
+<meta name="description" content="How Telemetry, the FTC team app made by FTC Team 13115, collects, uses and protects your information.">
+<style>
+  :root {
+    --bg: #0E0E12;        /* the app's background */
+    --surface: #1A1A20;   /* cards */
+    --text: #F5F5F7;      /* 18.2:1 on --bg */
+    --muted: #9A9AA5;     /* 6.9:1 on --bg */
+    --red: #FF3B57;       /* team red for text and marks: 5.5:1 on --bg */
+    --outline: #32323C;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  header { position: relative; border-bottom: 1px solid var(--outline); background: var(--surface); }
+  .bar { max-width: 760px; margin: 0 auto; padding: 20px 16px 18px; }
+  .app { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .14em; font-size: 15px; }
+  .dot { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #FF3B57, #8B1029); flex: none; }
+  h1 { margin: 10px 0 0; font-size: 30px; line-height: 1.2; }
+  .made {
+    position: absolute; top: 12px; right: 16px;
+    color: var(--muted); font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .made b { color: var(--red); font-weight: 800; }
+  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 48px; }
+  h2 { margin: 36px 0 8px; font-size: 21px; line-height: 1.3; }
+  h2::before { content: ""; display: block; width: 28px; height: 3px; background: var(--red); border-radius: 2px; margin-bottom: 10px; }
+  p, li { max-width: 68ch; }
+  ul { padding-left: 1.2em; }
+  li { margin: 6px 0; }
+  strong { color: #FFFFFF; }
+  a { color: var(--red); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 2px; }
+  .table { overflow-x: auto; margin: 12px 0; border: 1px solid var(--outline); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--outline); }
+  th { background: var(--surface); color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  tr:last-child td { border-bottom: 0; }
+  .effective { color: var(--muted); }
+  .lede { font-size: 19px; }
+  nav.links { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+  nav.links a {
+    display: inline-block; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-weight: 700;
+    background: var(--surface); border: 1px solid var(--outline); color: var(--text);
+  }
+  nav.links a.primary { background: #D61F3A; border-color: #D61F3A; color: #FFFFFF; } /* white on it: 5.1:1 */
+  .back { color: var(--muted); font-size: 15px; }
+  footer { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; color: var(--muted); font-size: 14px; }
+  /* Phones: each table row is a card, every value labelled, so nothing is cut off. */
+  @media (max-width: 640px) {
+    .table { border: 0; overflow: visible; }
+    table, tbody, tr, td { display: block; width: 100%; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    tr { border: 1px solid var(--outline); border-radius: 12px; margin: 10px 0; background: var(--surface); }
+    td { border: 0; padding: 4px 14px; }
+    td:first-child { padding-top: 12px; font-weight: 700; }
+    td:last-child { padding-bottom: 12px; }
+    td:not(:first-child)::before {
+      content: attr(data-label); display: block; color: var(--muted);
+      font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-top: 4px;
+    }
+  }
+  @media (max-width: 420px) {
+    .made { position: static; display: block; padding: 10px 16px 0; text-align: right; }
+    h1 { font-size: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="made">by <b>FTC Team 13115</b></span>
+  <div class="bar">
+    <a class="app" href="../" style="color: inherit; text-decoration: none;"><span class="dot" aria-hidden="true"></span>TELEMETRY</a>
+    <h1>Privacy Policy</h1>
+  </div>
+</header>
+<main>
+<p class="back"><a href="../">Telemetry</a></p>
+<p class="effective">Effective November 4, 2026.</p>
+<h2>About Telemetry</h2>
+<p>Telemetry is a free app that helps FIRST Tech Challenge (FTC) robotics teams run their team: tasks, meet schedules and match alerts, announcements, a calendar, scouting, and team tools like checklists and a parts inventory. It is made and run by students on FTC Team 13115, Brave Robotics, in New Jersey. "We" in this policy means the Telemetry team.</p>
+<p>Telemetry is not made by or affiliated with FIRST. Each team that uses Telemetry is approved by us, and its captain manages who joins it.</p>
+<h2>Who can use Telemetry</h2>
+<p>Telemetry is for members, mentors and coaches of FTC teams who are 13 or older. We ask you to confirm your age the first time you sign in.</p>
+<p>You sign in with a Google account, or on iPhone with Sign in with Apple. You can only use Telemetry as part of a team: you join one with an invite code from its captain, and the captain approves you.</p>
+<h2>Information we collect</h2>
+<p>We collect only what the app needs to work.</p>
+<div class="table"><table><thead><tr><th scope="col">Kind</th><th scope="col">What</th><th scope="col">Where it comes from</th></tr></thead><tbody><tr><td data-label="Kind">Account</td><td data-label="What">Your name, email address, and an ID from Google or Apple. Apple may give us a private relay email instead of your real one.</td><td data-label="Where it comes from">Google or Apple, when you sign in</td></tr><tr><td data-label="Kind">Team</td><td data-label="What">Your team, your role (captain, admin, member), subteams, and whether you're on the junior team</td><td data-label="Where it comes from">You and your captain</td></tr><tr><td data-label="Kind">What you create</td><td data-label="What">Tasks and their history, reasons for declining a task, deadline extension requests, announcements, calendar events, scouting notes about other teams' robots, alliance pick lists, your team's logo, and the team tools: checklists (and who ticked what), battery charge logs, the parts inventory (parts, counts and where they're kept), engineering log entries (and how many photos each has, though not the photos themselves), parts orders with prices and the team's budget, and how-to pages</td><td data-label="Where it comes from">You and your teammates</td></tr><tr><td data-label="Kind">Device</td><td data-label="What">A push notification token, whether the phone is iPhone or Android, and the app's version number</td><td data-label="Where it comes from">Your phone</td></tr><tr><td data-label="Kind">Activity</td><td data-label="What">When you last signed in, and who did what on each task, with times</td><td data-label="Where it comes from">The app, as you use it</td></tr><tr><td data-label="Kind">Reports</td><td data-label="What">Anything you report to us, why, and a copy of what you reported</td><td data-label="Where it comes from">You</td></tr><tr><td data-label="Kind">Sign in with Apple notices</td><td data-label="What">If you stop using Sign in with Apple for Telemetry or delete your Apple ID, Apple tells us, and we sign you out</td><td data-label="Where it comes from">Apple</td></tr></tbody></table></div>
+<h2>Information we do not collect</h2>
+<p>Telemetry has no ads and no analytics or tracking tools of its own, and never sells or rents your information. We do not collect your location, contacts, payment details or advertising ID.</p>
+<ul><li><strong>Camera:</strong> used to scan a team's invite QR code, and to take a photo when you add one to the engineering log. A QR scan takes no picture.</li><li><strong>Photos:</strong> engineering log photos stay on your phone. They are never uploaded to Telemetry; we only learn how many photos an entry has, so your teammates know to ask you for them. The app shrinks each photo and removes its hidden details (EXIF), including where it was taken, before keeping it. Only a captain's team logo is uploaded. Deleting the app or your account deletes the log photos on that phone, so save copies you want to keep.</li></ul>
+<h2>The assistant (on your phone only)</h2>
+<p>Telemetry's assistant answers questions about your team using the AI built into your phone: Apple Intelligence on iPhone, or Gemini Nano on supported Android phones. It runs on the phone itself.</p>
+<ul><li>Your questions, the answers, and the team data it reads (the tasks, inventory, checklists and other team information the app has already shown you) are kept on your phone. They are never sent to Telemetry's servers.</li><li>Your chats stay on your phone until you delete them. You can delete one chat or all of them in the assistant, and they are deleted when you sign out or delete your account.</li><li>On phones without on-device AI, the assistant only searches the team data on your phone.</li><li><strong>iPhone:</strong> the assistant uses Apple's on-device Foundation Models, which Apple says run on the phone. Telemetry sends your chats nowhere.</li><li><strong>Android:</strong> the assistant uses Gemini Nano through Google's ML Kit, which runs on the phone. Google's documentation says ML Kit sends Google limited diagnostic information: the phone's model and system version, which AI features were used and how long they took, and the language setting. Google's list of what it collects does not include your questions or the answers.</li></ul>
+<h2>Public robotics data</h2>
+<p>Match schedules, scores, rankings, and team names, schools and cities come from FIRST's public FTC Events API. Team-name search and season statistics come from FTCScout, a public FTC statistics site. This is public information about teams, not about you.</p>
+<p>When the app asks these services for data, it sends only team numbers and event codes, never anything about you.</p>
+<h2>How we use information</h2>
+<p>We use your information only to run Telemetry for you and your team:</p>
+<ul><li>show your team's tasks, announcements, calendar, meets and scouting;</li><li>send notifications, such as a new task, an approval, or "your match is in 10 minutes";</li><li>let captains and admins manage their team;</li><li>review new team registrations and reports, and stop misuse;</li><li>fix problems and keep the app running.</li></ul>
+<p>We never use it for advertising, and we never sell or share it for anyone else's marketing.</p>
+<h2>Who can see your information</h2>
+<p>Your information stays inside your own team. Other teams on Telemetry cannot see anything about your team, including your scouting notes.</p>
+<div class="table"><table><thead><tr><th scope="col">Who</th><th scope="col">What they can see</th></tr></thead><tbody><tr><td data-label="Who">Members of your team</td><td data-label="What they can see">Your name, role and subteams; your team's tasks and their history, announcements, calendar, scouting, and team tools (checklists, batteries, inventory, engineering log, parts orders and budget, how-to pages), including who wrote or logged each one</td></tr><tr><td data-label="Who">Your team's captain and admins</td><td data-label="What they can see">Everything members see, plus your email address and join requests</td></tr><tr><td data-label="Who">The Telemetry team (app owner)</td><td data-label="What they can see">Team registration requests (the requester's name and email, and the team's public details) and reports. We can also access stored data to fix problems, keep the app safe, or follow the law.</td></tr><tr><td data-label="Who">Other teams</td><td data-label="What they can see">Nothing about you or your team</td></tr></tbody></table></div>
+<p>We share information outside Telemetry only with the service providers below, or if the law requires it.</p>
+<h2>Service providers</h2>
+<p>Telemetry runs on a few outside services. Each one handles only what it needs to do its job.</p>
+<div class="table"><table><thead><tr><th scope="col">Service</th><th scope="col">What it does</th><th scope="col">What it handles</th></tr></thead><tbody><tr><td data-label="Service">Supabase</td><td data-label="What it does">Hosts the app's server, database and team logos</td><td data-label="What it handles">Everything listed under "Information we collect"</td></tr><tr><td data-label="Service">Google Firebase Cloud Messaging</td><td data-label="What it does">Delivers notifications</td><td data-label="What it handles">Your device's notification token and the notification text</td></tr><tr><td data-label="Service">Apple Push Notification service</td><td data-label="What it does">Delivers notifications to iPhones</td><td data-label="What it handles">The same as above</td></tr><tr><td data-label="Service">Google Sign-In</td><td data-label="What it does">Lets you sign in with Google</td><td data-label="What it handles">Your name, email and Google account ID</td></tr><tr><td data-label="Service">Sign in with Apple</td><td data-label="What it does">Lets you sign in with Apple on iPhone</td><td data-label="What it handles">Your name, email (or private relay email) and Apple account ID</td></tr><tr><td data-label="Service">GitHub</td><td data-label="What it does">Keeps the encrypted nightly backups of the database for 30 days</td><td data-label="What it handles">The backups, which only we can unlock</td></tr><tr><td data-label="Service">Google ML Kit (Android only)</td><td data-label="What it does">Runs the assistant's on-device AI</td><td data-label="What it handles">Limited diagnostic information, as described under "The assistant"</td></tr></tbody></table></div>
+<h2>Where data is stored, and how it's protected</h2>
+<p>Your information is stored in the United States, on Supabase's servers in the eastern US.</p>
+<ul><li>Everything sent between the app and our server is encrypted.</li><li>Our server checks on every request that you belong to the team whose data you're asking for.</li><li>A backup of the database is made every night, encrypted, and kept for 30 days in a private GitHub repository. The key that unlocks the backups is never stored on GitHub.</li></ul>
+<p>No system is perfectly secure. If we learn of a breach that affects your information, we will tell affected teams and users promptly.</p>
+<h2>Keeping and deleting your information</h2>
+<p>We keep your information while your account and your team are active.</p>
+<ul><li><strong>Deleting your account</strong> (Profile → Delete account): your name, email, sign-in ID and notification tokens are removed right away. If you used Sign in with Apple, we also tell Apple to disconnect Telemetry. Tasks and other things you made stay with your team, shown as by "Deleted user", so your team's history still makes sense. A captain must hand captaincy to someone else, or delete the team, before deleting their own account.</li><li><strong>Leaving or being removed from a team:</strong> you lose access to that team's information. Your account stays until you delete it.</li><li><strong>Deleting a team</strong> (captain only): the team's tasks, announcements, calendar, scouting, team tools and logo are deleted. Engineering log photos were never on our servers; they stay on each person's phone until they delete them.</li><li><strong>Backups:</strong> deleted information disappears from backups within 30 days, as old backups expire.</li></ul>
+<p>You can also ask us to delete your account by emailing <a href="mailto:telemetry.ftc13115@gmail.com.">telemetry.ftc13115@gmail.com.</a></p>
+<h2>Your choices and rights</h2>
+<ul><li><strong>See and correct your information:</strong> your name and subteams are on your Profile; your captain can fix your role.</li><li><strong>Notifications:</strong> turn them off anytime in your phone's settings.</li><li><strong>Get a copy, or have it deleted:</strong> delete your account in the app, or email <a href="mailto:telemetry.ftc13115@gmail.com">telemetry.ftc13115@gmail.com</a> for a copy or deletion. We reply within 30 days.</li><li><strong>Report a problem:</strong> use Report in the app, or email us.</li></ul>
+<p>Parents and guardians can email <a href="mailto:telemetry.ftc13115@gmail.com">telemetry.ftc13115@gmail.com</a> to see, correct or delete their child's information.</p>
+<h2>Children's privacy</h2>
+<p>Telemetry is not for children under 13, and we do not knowingly collect information from them. FTC allows some 12-year-olds on teams; they can join Telemetry once they turn 13.</p>
+<p>If we learn that someone under 13 has an account, we will delete it. Parents who think this has happened can email <a href="mailto:telemetry.ftc13115@gmail.com.">telemetry.ftc13115@gmail.com.</a></p>
+<h2>Changes to this policy</h2>
+<p>If we change this policy, we will update the date at the top and post the new version at this address. If a change affects how your information is used, we will also tell you in the app before it takes effect.</p>
+<h2>Contact us</h2>
+<p>Questions, privacy requests or problems: <a href="mailto:telemetry.ftc13115@gmail.com.">telemetry.ftc13115@gmail.com.</a> Telemetry is made by FTC Team 13115, Brave Robotics, New Jersey.</p>
+</main>
+<footer>Telemetry is free, made by students on FTC Team 13115, Brave Robotics. It isn't made by or affiliated with <i>FIRST</i>.
+Questions: <a href="mailto:telemetry.ftc13115@gmail.com">telemetry.ftc13115@gmail.com</a> · <a href="https://13115robotics.com/">13115robotics.com</a></footer>
+</body>
+</html>
