@@ -9,6 +9,9 @@
 //      computer's graphics chip, after a one-time download of about 1 GB
 //      that the browser keeps;
 //   4. otherwise the app searches the team's data instead (no AI).
+// The person can also pick one of these in the chat (choose(); options()
+// lists them); their pick is used while it's available, otherwise the order
+// above.
 // Questions and answers stay on the computer with all of them. The Dart side
 // is lib/assistant/web_model_web.dart.
 (function () {
@@ -62,19 +65,24 @@
     }
   }
 
-  async function findOllamaModel() {
-    if (saved('ollama') !== 'on') return null;
+  /** Ollama's chat models on this computer, if it's turned on and answering ([] otherwise). */
+  async function ollamaModels() {
+    if (saved('ollama') !== 'on') return [];
     try {
       var ctl = new AbortController();
       var timer = setTimeout(function () { ctl.abort(); }, ollamaJustTurnedOn ? 30000 : 1500);
       ollamaJustTurnedOn = false;
       var res = await fetch(OLLAMA + '/api/tags', { signal: ctl.signal });
       clearTimeout(timer);
-      if (!res.ok) return null;
-      var names = ((await res.json()).models || []).map(function (m) { return m.name; })
+      if (!res.ok) return [];
+      return ((await res.json()).models || []).map(function (m) { return m.name; })
         .filter(function (n) { return !/embed/i.test(n); });
-      return names.find(function (n) { return /llama3|qwen|gemma|phi|mistral/i.test(n); }) || names[0] || null;
-    } catch (_) { return null; }
+    } catch (_) { return []; }
+  }
+
+  async function findOllamaModel() {
+    var names = await ollamaModels();
+    return names.find(function (n) { return /llama3|qwen|gemma|phi|mistral/i.test(n); }) || names[0] || null;
   }
 
   async function webGpuModel() {
@@ -98,21 +106,68 @@
     return { state: state, engine: kind, label: label(kind), progress: progress, reason: reason || null };
   }
 
+  // The WebLLM model's status (warming it up if it's already downloaded).
+  function webllmStatus(model) {
+    var ready = engineModel === model || saved('webllm') === model;
+    // The assistant is open: have the model warm before the first question.
+    if (ready && !warmed) warm(false).catch(function () { /* the question will report it */ });
+    return result('webllm', ready ? 'ready' : 'downloadable');
+  }
+
+  // The person's pick from the chat, if it's available on this computer now.
+  async function chosenStatus(choice) {
+    if (choice === 'search') return result(null, 'unsupported', 'search');
+    if (choice === 'chrome') {
+      var c = await chromeAvailability();
+      if (c === 'available') return result('chrome', 'ready');
+      if (c === 'downloadable' || c === 'downloading') return result('chrome', c);
+    } else if (choice.indexOf('ollama:') === 0) {
+      var name = choice.slice(7);
+      if ((await ollamaModels()).indexOf(name) >= 0) {
+        ollamaModel = name;
+        return result('ollama', 'ready');
+      }
+    } else if (choice === 'webllm') {
+      var m = await webGpuModel();
+      if (m) return webllmStatus(m);
+    }
+    return null;
+  }
+
   async function status() {
     if (preparing) return result(current, 'downloading');
+    var choice = saved('choice');
+    if (choice) {
+      var picked = await chosenStatus(choice);
+      if (picked) return picked;
+    }
     var chrome = await chromeAvailability();
     if (chrome === 'available') return result('chrome', 'ready');
     ollamaModel = await findOllamaModel();
     if (ollamaModel) return result('ollama', 'ready');
     if (chrome === 'downloadable' || chrome === 'downloading') return result('chrome', chrome);
     var model = await webGpuModel();
-    if (model) {
-      var ready = engineModel === model || saved('webllm') === model;
-      // The assistant is open: have the model warm before the first question.
-      if (ready && !warmed) warm(false).catch(function () { /* the question will report it */ });
-      return result('webllm', ready ? 'ready' : 'downloadable');
-    }
+    if (model) return webllmStatus(model);
     return result(null, 'unsupported', saved('ollama') === 'on' ? 'noOllama' : 'noWebGpu');
+  }
+
+  /** Every AI the person can pick on this computer, for the chat's menu. */
+  async function options() {
+    var list = [];
+    var chrome = await chromeAvailability();
+    if (chrome !== 'unavailable') {
+      list.push({ id: 'chrome', label: label('chrome'), short: browserName() + ' AI', state: chrome === 'available' ? 'ready' : chrome });
+    }
+    (await ollamaModels()).forEach(function (n) {
+      list.push({ id: 'ollama:' + n, label: 'Ollama (' + n + ')', short: n, state: 'ready' });
+    });
+    var model = await webGpuModel();
+    if (model) {
+      list.push({ id: 'webllm', label: label('webllm'), short: 'Qwen 1.5B',
+        state: engineModel === model || saved('webllm') === model ? 'ready' : 'downloadable' });
+    }
+    list.push({ id: 'search', label: 'Search only (no AI)', short: 'Search', state: 'ready' });
+    return list;
   }
 
   async function loadWebLLM() {
@@ -273,5 +328,9 @@
     stop: stop,
     setOllama: function (on) { ollamaJustTurnedOn = !!on; save('ollama', on ? 'on' : null); },
     get ollamaOn() { return saved('ollama') === 'on'; },
+    options: options,
+    /** 'auto' (the order above) or an id from options(). */
+    choose: function (id) { save('choice', !id || id === 'auto' ? null : id); },
+    get chosen() { return saved('choice') || 'auto'; },
   };
 })();
