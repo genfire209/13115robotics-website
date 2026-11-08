@@ -1,6 +1,7 @@
 // Telemetry's assistant on a computer. The AI runs on the computer itself,
 // never on Telemetry's servers. The first of these that works is used:
-//   1. Chrome's built-in AI (Gemini Nano, through the Prompt API);
+//   1. the browser's built-in AI, through the Prompt API (Gemini Nano in
+//      Chrome; Edge has its own model);
 //   2. Ollama on this computer, if the person turns it on in the assistant
 //      (off by default: reaching localhost makes Chrome ask about the local
 //      network, and Ollama has to allow this site with OLLAMA_ORIGINS);
@@ -35,11 +36,24 @@
     } catch (_) { /* private window: just not remembered */ }
   }
 
-  var current = null;   // 'chrome' | 'ollama' | 'webllm' | null
+  var current = null;   // 'chrome' (the browser's built-in AI) | 'ollama' | 'webllm' | null
   var progress = null;  // 0 to 1 while a model downloads
   var preparing = null; // the download under way
   var abort = null;     // stops the answer being written
   var webllm = null, engine = null, engineModel = null, ollamaModel = null;
+  var loading = null;   // the WebLLM model being loaded
+  var warming = null;   // the WebLLM model being loaded and warmed up (see warm)
+  var warmed = false;
+  // Right after Ollama is turned on, Chrome may first ask the person whether
+  // this site can reach their computer's local network; wait for that answer.
+  var ollamaJustTurnedOn = false;
+
+  // Edge also has the Prompt API, with its own model.
+  function browserName() {
+    var brands = (navigator.userAgentData && navigator.userAgentData.brands) || [];
+    if (brands.some(function (b) { return /Edge/.test(b.brand); }) || /Edg\//.test(navigator.userAgent || '')) return 'Edge';
+    return 'Chrome';
+  }
 
   async function chromeAvailability() {
     if (!('LanguageModel' in self)) return 'unavailable';
@@ -52,7 +66,8 @@
     if (saved('ollama') !== 'on') return null;
     try {
       var ctl = new AbortController();
-      var timer = setTimeout(function () { ctl.abort(); }, 1500);
+      var timer = setTimeout(function () { ctl.abort(); }, ollamaJustTurnedOn ? 30000 : 1500);
+      ollamaJustTurnedOn = false;
       var res = await fetch(OLLAMA + '/api/tags', { signal: ctl.signal });
       clearTimeout(timer);
       if (!res.ok) return null;
@@ -72,7 +87,7 @@
   }
 
   function label(kind) {
-    if (kind === 'chrome') return "Chrome's built-in AI";
+    if (kind === 'chrome') return browserName() + "'s built-in AI";
     if (kind === 'ollama') return 'Ollama (' + ollamaModel + ')';
     if (kind === 'webllm') return 'Qwen2.5 1.5B, running in your browser';
     return null;
@@ -91,7 +106,12 @@
     if (ollamaModel) return result('ollama', 'ready');
     if (chrome === 'downloadable' || chrome === 'downloading') return result('chrome', chrome);
     var model = await webGpuModel();
-    if (model) return result('webllm', engineModel === model || saved('webllm') === model ? 'ready' : 'downloadable');
+    if (model) {
+      var ready = engineModel === model || saved('webllm') === model;
+      // The assistant is open: have the model warm before the first question.
+      if (ready && !warmed) warm(false).catch(function () { /* the question will report it */ });
+      return result('webllm', ready ? 'ready' : 'downloadable');
+    }
     return result(null, 'unsupported', saved('ollama') === 'on' ? 'noOllama' : 'noWebGpu');
   }
 
@@ -99,18 +119,56 @@
     var model = await webGpuModel();
     if (!model) throw new Error("This browser can't use the computer's graphics chip (WebGPU).");
     if (engine && engineModel === model) return engine;
-    webllm = webllm || await import(WEBLLM);
-    try {
-      engine = await webllm.CreateMLCEngine(model, {
-        initProgressCallback: function (report) { progress = report.progress; },
-      });
-    } catch (e) {
-      save('webllm', null);
-      throw e;
-    }
-    engineModel = model;
-    save('webllm', model);
-    return engine;
+    if (loading) return loading; // one load at a time, however many callers
+    loading = (async function () {
+      try {
+        webllm = webllm || await import(WEBLLM);
+        var e = await webllm.CreateMLCEngine(model, {
+          initProgressCallback: function (report) { progress = report.progress; },
+        });
+        engine = e;
+        engineModel = model;
+        warmed = false;
+        save('webllm', model);
+        return e;
+      } catch (e) {
+        save('webllm', null);
+        throw e;
+      } finally {
+        loading = null;
+      }
+    })();
+    return loading;
+  }
+
+  // Loads the model onto the graphics chip and writes a one-word answer,
+  // which compiles its shaders: otherwise the first real question waits
+  // several seconds before any words appear (measured: 6.5 s down to 1.5 s
+  // on a 2018 MacBook Pro). With download false it does nothing if the
+  // model isn't in the browser any more, so it's offered as a download again
+  // instead of quietly downloading 1 GB.
+  function warm(download) {
+    if (warming) return warming;
+    warming = (async function () {
+      try {
+        if (!download) {
+          var model = await webGpuModel();
+          webllm = webllm || await import(WEBLLM);
+          if (!model || (webllm.hasModelInCache && !(await webllm.hasModelInCache(model)))) {
+            save('webllm', null);
+            return;
+          }
+        }
+        var e = await loadWebLLM();
+        if (!warmed) {
+          await e.chat.completions.create({ messages: [{ role: 'user', content: 'Hi' }], max_tokens: 1 });
+          warmed = true;
+        }
+      } finally {
+        warming = null;
+      }
+    })();
+    return warming;
   }
 
   /** Gets the model (a download the first time). Resolves once it's ready. */
@@ -126,7 +184,7 @@
           }));
           session.destroy();
         } else if (kind === 'webllm') {
-          await loadWebLLM();
+          await warm(true);
         }
       } finally {
         preparing = null;
@@ -182,6 +240,7 @@
           }
         }
       } else if (current === 'webllm') {
+        if (warming) { try { await warming; } catch (_) { /* loading again below reports it */ } }
         var e = await loadWebLLM();
         ctl.signal.addEventListener('abort', function () { e.interruptGenerate(); });
         var chunks = await e.chat.completions.create({
@@ -212,7 +271,7 @@
     prepare: prepare,
     ask: ask,
     stop: stop,
-    setOllama: function (on) { save('ollama', on ? 'on' : null); },
+    setOllama: function (on) { ollamaJustTurnedOn = !!on; save('ollama', on ? 'on' : null); },
     get ollamaOn() { return saved('ollama') === 'on'; },
   };
 })();
