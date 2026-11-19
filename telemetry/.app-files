@@ -1,0 +1,15 @@
+assets
+assistant_ai.js
+boot.js
+canvaskit
+favicon.png
+flutter_bootstrap.js
+flutter.js
+flutter_service_worker.js
+icons
+index.html
+logo.svg
+main.dart.js
+manifest.json
+vendor
+version.json
