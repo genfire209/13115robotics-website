@@ -134359,6 +134359,8 @@ else g=l===1?"Tomorrow":"In "+l+" days \xb7 "+A.bdk(e.e)
 b.push(g)
 g=e.w
 if(g!=null)b.push(g)
+g=e.x
+if(g!=null)b.push(g)
 if(e.y!=null&&e.z!=null)a=new A.aPb(i,e)}else{d.sds("MEETS")
 c.sds("No meets in the next two months")
 b.push("Once you're registered for one on FIRST, it shows up here.")}g=A.cl(20)
