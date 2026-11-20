@@ -1,0 +1,187 @@
+{
+  "title": "FTC and BIOBUZZ FAQ",
+  "basedOn": "2026-2027 Competition Manual, TU10",
+  "note": "Plain-words answers by Telemetry. FIRST's manual is the source of truth: tap a rule to read it.",
+  "categories": [
+    {
+      "title": "The game: BIOBUZZ",
+      "items": [
+        {
+          "q": "What happens in a BIOBUZZ match?",
+          "a": "Two alliances of 2 teams each play. A match is a 30-second AUTO period (robots run on their own), an 8-second pause, then a 2-minute TELEOP period with drivers in control.\n\nRobots collect POLLEN (yellow balls) and NECTAR (red and blue balls), LAUNCH them into their HIVE to tip it, and in the last minute place them into FLOWERS. The alliance with more points wins.",
+          "refs": ["8", "10.1", "10.4"]
+        },
+        {
+          "q": "What's on the field?",
+          "a": "A 12 x 12 ft field of 36 foam tiles. In the middle is the HIVE structure: a red HIVE and a blue HIVE, each with 2 CELLS on a tipping arm. There are 4 FLOWERS on the walls. Each alliance has a LOADING ZONE (one tile long, by its own alliance area) and a GARDEN (a strip along the wall, in opposite corners).\n\nThere are 40 POLLEN, 8 red NECTAR and 8 blue NECTAR. Each robot starts holding 4 POLLEN; 4 more sit in each FLOWER and each GARDEN, and 3 NECTAR start in each upward-facing CELL. The other 5 NECTAR per alliance wait with the drive team.",
+          "refs": ["9.2", "9.3", "9.6", "9.7", "9.8", "10.3.1"]
+        },
+        {
+          "q": "How do you tip the HIVE?",
+          "a": "LAUNCH POLLEN or NECTAR into your HIVE's upward-facing CELL. When enough balls are in it, the HIVE flips so the other CELL faces up. Each TIP is worth 20 points, in AUTO or TELEOP, and lets your human player bring in one more NECTAR.\n\nLaunching into the open CELL is the only legal way to tip it: ramming the frame or launching at the outside of a CELL is a foul.",
+          "refs": ["10.5.1", "G417", "G426"]
+        },
+        {
+          "q": "How do FLOWERS score?",
+          "a": "Balls only go in through the top of a FLOWER, and only POLLEN may be taken out, from the bottom. NECTAR may only go into a FLOWER in the last 60 seconds (a MAJOR FOUL per NECTAR otherwise).\n\nAt the end of the match, the alliance whose NECTAR is top-most in a FLOWER owns it and gets 2 points for every POLLEN and NECTAR in it, no matter who put them there. The alliance with the bottom-most NECTAR of its color in a FLOWER gets a 5-point Bottom NECTAR Bonus.",
+          "refs": ["10.5.2", "G410", "G418"]
+        },
+        {
+          "q": "What does the GARDEN do?",
+          "a": "Every POLLEN or NECTAR at least partly in a GARDEN at the end of the match is worth 1 point to the alliance whose color the GARDEN is, whoever put it there. GARDENS aren't protected: either alliance can take balls out of either one.",
+          "refs": ["10.5.3"]
+        },
+        {
+          "q": "What are LEAVE and PARK?",
+          "a": "LEAVE (3 points, AUTO only): by the end of AUTO, the robot is no longer touching the perimeter wall.\n\nPARK (5 points at the end of AUTO, and 5 more at the end of the match): the robot is at least partly in your alliance's LOADING ZONE.",
+          "refs": ["10.5.4", "10.5.5"]
+        },
+        {
+          "q": "What is everything worth?",
+          "a": "LEAVE: 3 (AUTO)\nPARK: 5 in AUTO, 5 at the end\nHIVE TIP: 20 each, AUTO or TELEOP\nBall left in your upward-facing CELL at the end: 2 each\nBall in a FLOWER you own: 2 each\nBottom NECTAR Bonus: 5 per FLOWER\nBall in your GARDEN: 1 each\n\nFouls give points to the other alliance: 5 for a MINOR FOUL, 20 for a MAJOR FOUL.",
+          "refs": ["10.5.5", "10.6"]
+        },
+        {
+          "q": "How do ranking points work?",
+          "a": "In Qualification matches each team on an alliance earns: 3 for a win, 1 for a tie, plus 1 for each bonus the alliance reaches:\n- SWARM: LEAVE and PARK points together reach 16\n- POLLINATOR 1: 4 HIVE TIPS\n- POLLINATOR 2: 7 HIVE TIPS\n\nThose thresholds are for regular events; championship thresholds come in Team Updates. A disqualified team gets 0.",
+          "refs": ["10.5.5", "13.6.3"]
+        },
+        {
+          "q": "When can the human player add NECTAR?",
+          "a": "Each alliance starts with 5 NECTAR beside the field. One may be entered each time your HIVE tips, and with 60 seconds left you can enter all that's left. It goes in by hand, only by your own drive team, and must touch the floor inside your LOADING ZONE before it touches a robot or anything else. Breaking these is a MINOR FOUL per NECTAR. Drive team members may never take balls off the field.",
+          "refs": ["G426", "G427", "G428"]
+        },
+        {
+          "q": "How many balls can a robot hold?",
+          "a": "4 at a time. Holding 5 or more gets a closer look from the referees, and doing it on purpose is a MAJOR FOUL and a YELLOW CARD. Robots also may not control the other alliance's NECTAR, catch balls falling out of a tipping HIVE before they touch something else, or hoard more than 8 balls away from the other alliance.",
+          "refs": ["G407", "G408", "G409", "G411"]
+        },
+        {
+          "q": "What isn't allowed during AUTO?",
+          "a": "Nobody on the drive team touches the robot or controls, except to press start and stop (or for safety). Don't get in the way of the other alliance's AUTO: red has columns A to C and blue has D to F. Robots must not move under power during the 8 seconds between AUTO and TELEOP, or after the match ends.",
+          "refs": ["G401", "G402", "G403", "G404"]
+        },
+        {
+          "q": "How are pins and fouls handled?",
+          "a": "A robot may pin an opponent for up to 3 seconds; after that it's a MAJOR FOUL plus another for every 3 seconds it goes on. A MINOR FOUL gives the other alliance 5 points and a MAJOR FOUL gives 20. A YELLOW CARD is a warning; a second one becomes a RED CARD, which disqualifies the team for that match.",
+          "refs": ["G421", "10.6", "10.6.1"]
+        }
+      ]
+    },
+    {
+      "title": "The robot",
+      "items": [
+        {
+          "q": "How big can the robot be?",
+          "a": "It starts the match inside an 18 x 18 x 18 in. cube (pre-loaded POLLEN may stick out). After the start it may expand, but must always fit in an 18 x 24 in. footprint, 29 in. tall, and the limit has to be physical: software limits don't count. There's no weight limit.",
+          "refs": ["R102", "R104", "R105"]
+        },
+        {
+          "q": "Which motors, servos and batteries are allowed?",
+          "a": "Only the motors listed in R501, and at most 8 motors and 8 servos in total (counting every mechanism you might swap in). Exactly one approved 12 V NiMH main battery powers the robot.",
+          "refs": ["R501", "R502", "R503", "R601"]
+        },
+        {
+          "q": "What do the robot signs need?",
+          "a": "At least 2 signs, on surfaces at least 90 degrees apart, each at least 6.5 x 2.5 in. with a solid red or blue background for your alliance color in that match, and the team number in white numbers about 2.25 in. tall.",
+          "refs": ["R401", "R402", "R403"]
+        },
+        {
+          "q": "How do we set up the robot before a match?",
+          "a": "Put it on your alliance's side (red: columns A to C, blue: D to F), touching the perimeter wall, inside its starting size, not touching a FLOWER and not in the LOADING ZONE, with exactly 4 POLLEN touching it. Then pick an OpMode on the Driver Station and press INIT. If it's an AUTO OpMode, the 30-second timer must be on. Teams without an AUTO should still INIT a simple default one.",
+          "refs": ["G304", "G305", "10.3.4"]
+        }
+      ]
+    },
+    {
+      "title": "Event day",
+      "items": [
+        {
+          "q": "What do we need to check in?",
+          "a": "An adult from the team checks in at least 45 minutes before Qualification matches start, with at least one student already at the venue. Your region may also ask for a printed roster from the FIRST dashboard and consent forms. At least one responsible adult must stay for the whole event.",
+          "refs": ["I102", "I103"]
+        },
+        {
+          "q": "What happens at inspection?",
+          "a": "Students show inspectors the robot, every part it will use, and the operator console. The Lead Robot Inspector has the final say. Self-inspect before every event: the Checklists tool has FIRST's robot inspection checklist ready to use.",
+          "refs": ["3.3.1", "I301"]
+        },
+        {
+          "q": "What are the safety rules?",
+          "a": "Wear safety glasses with side shields in the specified areas (there's a 10-minute grace period when the venue opens), closed-toe shoes, and tie back long hair. Charge batteries at a safe rate on a charger of 3 amps or less per channel, using polarized connectors, never alligator clips.",
+          "refs": ["E101", "E511"]
+        },
+        {
+          "q": "Who can be on the drive team?",
+          "a": "Up to 4 people from your team: one DRIVE COACH (who may be an adult) and up to 3 students as DRIVERS or HUMAN PLAYER. Only one drive team member may be a non-student.",
+          "refs": ["10.2"]
+        },
+        {
+          "q": "How are teams ranked at an event?",
+          "a": "By RANKING SCORE: the average ranking points per Qualification match. Ties are broken by average match points without fouls, then average number of HIVE TIPS, then average AUTO points, then at random.",
+          "refs": ["13.6.3"]
+        },
+        {
+          "q": "How does alliance selection work?",
+          "a": "After Qualifications, the top-ranked teams become alliance leads and each picks one partner. If a lead picks another lead, everyone below moves up. A team that declines an invitation can't be invited by another alliance (an alliance lead that declines can still pick its own partner).",
+          "refs": ["13.7.1", "T702"]
+        },
+        {
+          "q": "How do League Meets and the League Tournament work?",
+          "a": "League Meets have 5 or 6 Qualification matches per team, with no playoffs and no judging or awards; cards are cleared at the end of each meet. Teams should play at least 10 League Meet matches. At the League Tournament, your best 10 League Meet matches count toward your ranking along with the tournament's matches. A team can be in only one league per season.",
+          "refs": ["14"]
+        },
+        {
+          "q": "How do teams advance?",
+          "a": "Teams can advance from their first three entry-level events of the season (Qualifying Tournaments and League Tournaments), and only from events in their own home region.",
+          "refs": ["4"]
+        }
+      ]
+    },
+    {
+      "title": "Judging and the portfolio",
+      "items": [
+        {
+          "q": "What awards are there?",
+          "a": "The Inspire Award is the top all-around award. The other judged awards are Think (the engineering portfolio), Innovate, Control and Design (the robot), Connect, Reach and Sustain (the team and its outreach), and the Judges' Choice Award. A team can win only one judged award per event. Teams can be judged even without a robot. There are no awards at League Meets.",
+          "refs": ["6", "6.1", "A215"]
+        },
+        {
+          "q": "What are the portfolio rules?",
+          "a": "One cover page with your team number, plus at most 15 pages, on US Letter or A4, under 15 MB if digital, covering only work since January 1, 2026. Use first names and last initials only. Judges won't click links or watch videos, so put everything in the pages. You may use AI to help write it if you credit it in a footnote, e.g. \"Portfolio created by Team XXXXX and ChatGPT\". The Inspire Award requires a portfolio.\n\nThe Portfolio builder tool sorts your engineering log by award so you can see what you have to show.",
+          "refs": ["A201", "6.3.1"]
+        },
+        {
+          "q": "What happens in the judging interview?",
+          "a": "Every team gets the same amount of interview time, and the timer starts when your team starts talking. One adult may watch silently. No photos, video or audio recording during the interview. All teams get judging feedback.",
+          "refs": ["A203", "A205", "A206", "A208", "A210", "A212"]
+        }
+      ]
+    },
+    {
+      "title": "Using Telemetry",
+      "items": [
+        {
+          "q": "How do I get match alerts at a meet?",
+          "a": "A captain or admin opens the meet in Meets and turns on meet mode. Everyone on the team then gets a push about 10 and 5 minutes before each of your matches, and the result after. It turns itself off after the meet.",
+          "refs": []
+        },
+        {
+          "q": "How do I see who's coming to a meet?",
+          "a": "Open the meet and go to the Scouting tab. Before the match schedule is out, it shows FIRST's team list, or for New Jersey meets, the teams registered on the NJ league's website (unofficial until FIRST's schedule is posted). Tap the chart button on a team to see its season.",
+          "refs": []
+        },
+        {
+          "q": "How do I look up another team?",
+          "a": "Tap any team in the league standings, a meet's rankings, a match or a match brief, or search in Meets > Team lookup. You'll see its events, rankings and every match this season.",
+          "refs": []
+        },
+        {
+          "q": "Who can see our team's data?",
+          "a": "Only people on your team. Other teams never see your tasks, scouting notes or tools. With shared scouting at a meet, only numbers are pooled; written notes stay private.",
+          "refs": []
+        }
+      ]
+    }
+  ]
+}
